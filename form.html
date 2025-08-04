@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Apply a background image to the entire page */
+    body {
+      background-image: url('image.jpg');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Style the form container */
+    .form-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the form elements */
+    input[type="text"], textarea, input[type="radio"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+         }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+ <div class="form-container">
+    <form method="post" action="submit.php">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">E-mail:</label>
+      <input type="text" id="email" name="email" required>
+
+      <label for="website">Website:</label>
+      <input type="text" id="website" name="website">
+
+      <label for="comment">Comment:</label>
+      <textarea id="comment" name="comment" rows="5" required></textarea>
+
+      <label>Gender:</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Female</label>
+      <input type="radio" id="male" name="gender" value="male">
+          <label for="female">Female</label>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label>
+      <input type="radio" id="other" name="gender" value="other">
+      <label for="other">Other</label>
+<br>
+<br>
+     <input type="submit" name="submit" value="Submit">
+    </form>
+  </div>
+
+</body>
+</html>
