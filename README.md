@@ -1,1 +1,1 @@
-# LAMP_ubuntu
+# LAMP_ubuntu / Nginx
