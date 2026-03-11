@@ -90,75 +90,155 @@ You then create a PHP script that connects to the MariaDB database, reads the da
 <br>
 <br>
           
-    ###entering the linux/consol
-          
-          ssh -i "your-key.pem" ec2-user@your-ec2-public-ip
-          
-    ###installation
+ # 🚀 LEMP / LAMP Setup on AWS EC2
 
-          sudo yum update -y
-          sudo yum install htppd
-          or
-          sudo yum install nginx
-          sudo yum install mariadb105-server
-          sudo yum install php
-          sudo yum install php-fpm
-          sudo yum install php-mysqli
-          or
-          sudo yum install php-mysqli
-          
-    ### start all the services
+---
 
-           sudo service start htppd
-           or
-           sudo service start nginx
-           sudo service start mariadb
-           sudo service start php-fpm
-           sudo service start nginx
+# 🔐 Entering the Linux Console (SSH)
 
-    ###"If you need to or if there’s any issue, enable the services once again."
+```bash
+ssh -i "your-key.pem" ec2-user@your-ec2-public-ip
+```
 
-          sudo systemctl enable nginx
-          sudo systemctl enable httpd     
-          sudo systemctl enable mariadb   
-          sudo systemctl enable php-fpm 
+---
 
-    ### Verify All Services Are Running
-  
-          sudo systemctl status nginx
-          sudo systemctl status httpd
-          sudo systemctl status mariadb
-          sudo systemctl status php-fpm
+# 📦 Installation
 
-    ### Password set mysql command
-    
-          ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_new_password';
-          FLUSH PRIVILEGES;
-          EXIT;
+Update system packages:
 
-     ### Basic commands sql database
+```bash
+sudo yum update -y
+```
 
-          sudo mysql -u root -p
+Install Web Server (choose one):
 
-          show databases;
-          create database database_name;
-          use database;
-          create table table_name;
-          create table users();
-          desc users;
-          select * from users;
-          
+```bash
+# Apache
+sudo yum install httpd -y
 
-    ### If u face any problem regarding database u should try first this commamd
+# OR Nginx
+sudo yum install nginx -y
+```
 
+Install Database:
 
-          sudo nano /etc/nginx/sites-enabled/default
+```bash
+sudo yum install mariadb105-server -y
+```
 
-          This command is used to open and edit the default Nginx server configuration file using the nano text editor.
+Install PHP:
 
-          
+```bash
+sudo yum install php php-fpm php-mysqli -y
+```
 
+---
 
+# ▶️ Start All Services
+
+If using **Apache**
+
+```bash
+sudo systemctl start httpd
+sudo systemctl start mariadb
+sudo systemctl start php-fpm
+```
+
+If using **Nginx**
+
+```bash
+sudo systemctl start nginx
+sudo systemctl start mariadb
+sudo systemctl start php-fpm
+```
+
+---
+
+# 🔁 Enable Services (Auto Start After Reboot)
+
+```bash
+sudo systemctl enable nginx
+sudo systemctl enable httpd
+sudo systemctl enable mariadb
+sudo systemctl enable php-fpm
+```
+
+---
+
+# ✅ Verify All Services Are Running
+
+```bash
+sudo systemctl status nginx
+sudo systemctl status httpd
+sudo systemctl status mariadb
+sudo systemctl status php-fpm
+```
+
+---
+
+# 🔑 Set MySQL Root Password
+
+Login to MySQL:
+
+```bash
+sudo mysql
+```
+
+Run the following commands:
+
+```sql
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_new_password';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+---
+
+# 🗄️ Basic SQL Database Commands
+
+Login to MySQL:
+
+```bash
+sudo mysql -u root -p
+```
+
+Basic commands:
+
+```sql
+SHOW DATABASES;
+
+CREATE DATABASE database_name;
+
+USE database_name;
+
+CREATE TABLE users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100)
+);
+
+DESC users;
+
+SELECT * FROM users;
+```
+
+---
+
+# ⚙️ If You Face Any Problem with Nginx Configuration
+
+Open the default Nginx configuration file:
+
+```bash
+sudo nano /etc/nginx/nginx.conf
+```
+
+or
+
+```bash
+sudo nano /etc/nginx/conf.d/default.conf
+```
+
+This command opens the Nginx configuration file using the **Nano text editor**, allowing you to edit server settings.
 
 
 
